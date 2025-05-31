@@ -5,368 +5,276 @@ A website about meeeeeee
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自我介紹簡報</title>
+    <title>NJ_Moments自我介紹</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* 從 Google Fonts 導入 Inter 字體 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #f0f9ff; /* 淺藍色背景，營造活潑感 */
+            color: #334155; /* 深藍灰色文字 */
+            line-height: 1.6;
+            overflow-x: hidden; /* 防止水平滾動 */
         }
-        .slide-container {
-            display: flex;
-            overflow-x: auto; /* Enable horizontal scrolling for slides */
-            scroll-snap-type: x mandatory; /* Snap to slides */
-            width: 100%;
-            height: 100vh; /* Full viewport height */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+
+        /* 確保所有元素都有圓角 */
+        .rounded-element {
+            border-radius: 1.5rem; /* 大圓角 */
         }
-        .slide {
-            flex: 0 0 100%; /* Each slide takes full width */
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+
+        /* 區塊間距 */
+        section {
+            padding: 4rem 1rem; /* 上下大間距，左右小間距 */
+            margin-bottom: 2rem; /* 區塊間隔 */
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 2rem; /* 在桌面螢幕上增加間距 */
+            }
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3 {
+            font-weight: 800; /* 超粗體 */
+            color: #1a202c; /* 更深的標題顏色 */
+        }
+
+        h1 {
+            font-size: 3rem; /* 較大標題 */
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.5rem; /* 次要標題 */
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 2rem; /* 區塊內小標題 */
+            line-height: 1.3;
+        }
+
+        @media (max-width: 767px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-flex;
             align-items: center;
-            background-color: white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-radius: 1.5rem; /* Rounded corners for slides */
-            padding: 2rem;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
             text-align: center;
-            scroll-snap-align: start; /* Align slides to the start */
-            transition: transform 0.5s ease-in-out;
-            margin: 0 1rem; /* Spacing between slides */
-            box-sizing: border-box; /* Include padding in width */
+            text-decoration: none;
+            border-radius: 9999px; /* 圓形按鈕 */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 768px) {
-            .slide {
-                padding: 1rem;
-                border-radius: 1rem;
-                margin: 0 0.5rem;
-            }
-            .slide h1 {
-                font-size: 2.5rem;
-            }
-            .slide h2 {
-                font-size: 1.75rem;
-            }
-            .slide p, .slide li {
-                font-size: 0.9rem;
-            }
-        }
-
-        .slide-content {
-            max-width: 90%; /* Limit content width */
-            margin: auto;
-        }
-
-        .slide-image {
-            max-width: 80%;
-            max-height: 40vh;
-            object-fit: contain;
-            border-radius: 1rem;
-            margin-top: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Navigation buttons */
-        .nav-button {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+        .btn-primary {
+            background-image: linear-gradient(to right top, #6366f1, #a855f7); /* 紫藍色漸變 */
             color: white;
             border: none;
-            padding: 0.75rem 1.25rem;
-            border-radius: 9999px; /* Fully rounded */
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 100;
-            transition: background-color 0.3s ease;
         }
-        .nav-button:hover {
-            background-color: rgba(0, 0, 0, 0.7);
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background-image: linear-gradient(to right top, #4f46e5, #9333ea);
         }
-        .nav-button.left {
-            left: 1rem;
+
+        /* 漸變背景文字 */
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #6366f1, #a855f7);
         }
-        .nav-button.right {
-            right: 1rem;
+
+        /* 影片嵌入響應式容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="slide-container" id="slideContainer">
-
-        <div class="slide bg-gradient-to-br from-blue-500 to-purple-600 text-white">
-            <div class="slide-content">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">自我介紹</h1>
-                <h2 class="text-3xl md:text-4xl font-semibold mb-6">認識 [您的名字]</h2>
-                <p class="text-xl md:text-2xl mb-2">[您的名字]</p>
-                <p class="text-lg md:text-xl">[您的職稱/身份，例如：軟體工程師 / 學生]</p>
-                <p class="text-base md:text-lg mt-4">聯絡方式：[您的電子郵件] | [您的LinkedIn]</p>
-                <img src="https://placehold.co/300x300/60a5fa/ffffff?text=您的專業照片" alt="您的專業照片" class="slide-image mx-auto mt-8 w-48 h-48 rounded-full object-cover border-4 border-white">
-            </div>
+    <section class="bg-gradient-to-br from-blue-400 to-purple-500 text-white text-center py-20 md:py-32 rounded-element max-w-6xl mx-auto">
+        <div class="container">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">
+                嗨，我是 <span class="text-yellow-200">諾進</span>！
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                一個熱愛用鏡頭捕捉生活、並不斷探索新知的創作者。
+            </p>
+            <a href="#about" class="btn btn-primary text-lg md:text-xl">
+                了解更多關於我 ➔
+            </a>
         </div>
+    </section>
 
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">關於我</h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                    我是一個熱愛學習、充滿好奇心的 <span class="font-semibold text-blue-600">[您的職業/身份]</span>，致力於 <span class="font-semibold text-purple-600">[您的目標或熱情所在]</span>。
+    <section id="about" class="bg-white shadow-lg rounded-element max-w-6xl mx-auto">
+        <div class="container flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    關於我：<span class="gradient-text">鏡頭下的生活與永不停止的學習</span>
+                </h2>
+                <p class="text-lg text-gray-700 mb-4">
+                    我是一個充滿好奇心的年輕創作者，熱愛透過鏡頭記錄生活中的美好瞬間。從城市街角的光影，到大自然的壯麗景色，每一個畫面都是我對世界獨特的觀察與感受。
                 </p>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    我的關鍵詞是：<span class="font-bold text-green-600">創新</span>、<span class="font-bold text-yellow-600">解決問題</span>、<span class="font-bold text-red-600">團隊合作</span>。
+                <p class="text-lg text-gray-700 mb-4">
+                    除了攝影，我也對學習新事物充滿熱情。我喜歡挑戰自己，無論是新的技術、不同的文化，或是任何能拓展我視野的領域。我相信，持續學習是成長的動力，即使遇到困難，我也會努力克服。
                 </p>
-                <img src="https://placehold.co/400x250/cbd5e1/334155?text=展現您個性的生活照" alt="展現您個性的生活照" class="slide-image mx-auto">
+                <p class="text-lg text-gray-700">
+                    我的創作不僅僅是記錄，更是分享。我希望透過我的影片和內容，與你一同探索生活中的無限可能，激發更多的好奇心和學習的樂趣。
+                </p>
             </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">學術背景與教育</h2>
-                <ul class="text-left text-lg md:text-xl text-gray-700 space-y-4">
-                    <li class="flex items-start">
-                        <span class="text-blue-500 mr-3 text-2xl">&#x2022;</span>
-                        <div>
-                            <span class="font-semibold">最高學歷：</span><br>
-                            [您的學位]，[您的主修]，[您的學校名稱]，[畢業年份]
-                            <p class="text-sm text-gray-500 mt-1">例如：碩士，資訊工程，國立台灣大學，2023年</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-blue-500 mr-3 text-2xl">&#x2022;</span>
-                        <div>
-                            <span class="font-semibold">其他學歷/重要課程：</span><br>
-                            [其他學位、證書或相關課程]
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-blue-500 mr-3 text-2xl">&#x2022;</span>
-                        <div>
-                            <span class="font-semibold">學術成就/榮譽：</span><br>
-                            [例如：書卷獎、論文發表、專題研究]
-                        </div>
-                    </li>
-                </ul>
-                <img src="https://placehold.co/400x250/e0e7ff/4338ca?text=學校校園照片或畢業照" alt="學校校園照片或畢業照" class="slide-image mx-auto">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">我的專業經驗</h2>
-                <div class="space-y-6 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-purple-700 mb-2">[公司名稱1]</h3>
-                        <p class="text-lg md:text-xl mb-1">[您的職位]，[任職期間]</p>
-                        <ul class="list-disc list-inside ml-4 space-y-1 text-base md:text-lg">
-                            <li>主要職責與成就：[列出1-2項關鍵職責和具體成就，使用量化數據]</li>
-                            <li>[另一個成就]</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-purple-700 mb-2">[公司名稱2]</h3>
-                        <p class="text-lg md:text-xl mb-1">[您的職位]，[任職期間]</p>
-                        <ul class="list-disc list-inside ml-4 space-y-1 text-base md:text-lg">
-                            <li>主要職責與成就：[列出1-2項關鍵職責和具體成就，使用量化數據]</li>
-                            <li>[另一個成就]</li>
-                        </ul>
-                    </div>
+            <div class="md:w-1/2">
+                <div class="bg-blue-100 p-8 rounded-element text-blue-800 text-xl italic font-semibold text-center shadow-inner">
+                    「生活是一個一直向前的河流。如果慢下腳步將會被自己停在原地，所以我希望自己能夠努力繼續往前。跟河流一樣流到世界各地。」
                 </div>
-                <img src="https://placehold.co/400x250/d1e7dd/2f6c4f?text=公司Logo或工作場景" alt="公司Logo或工作場景" class="slide-image mx-auto">
             </div>
         </div>
+    </section>
 
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">我的技能與專長</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-blue-700 mb-3">硬技能 (Hard Skills)</h3>
-                        <ul class="list-disc list-inside ml-4 space-y-2 text-lg md:text-xl">
-                            <li>程式語言：<span class="font-medium">[例如：Python, Java, JavaScript]</span></li>
-                            <li>軟體/工具：<span class="font-medium">[例如：Figma, Photoshop, Tableau]</span></li>
-                            <li>技術領域：<span class="font-medium">[例如：機器學習, 數據分析]</span></li>
-                        </ul>
+    <section id="photography" class="bg-gradient-to-br from-pink-300 to-red-400 text-white shadow-lg rounded-element max-w-6xl mx-auto">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                我的攝影：<span class="text-yellow-100">透過影片分享我的視角</span>
+            </h2>
+            <p class="text-lg mb-8 max-w-3xl mx-auto">
+                我的攝影不只是一種興趣，更是我記錄生活、表達情感的方式。這裡展示一些我喜歡的影片作品，希望能帶給你一些共鳴。
+            </p>
+            <div class="grid grid-cols-1 gap-8">
+                <div class="bg-white p-4 rounded-element shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">溫仔底濕地公園：生態之美</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8_fzbHR0X-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-green-700 mb-3">軟技能 (Soft Skills)</h3>
-                        <ul class="list-disc list-inside ml-4 space-y-2 text-lg md:text-xl">
-                            <li>溝通能力</li>
-                            <li>解決問題</li>
-                            <li>團隊合作</li>
-                            <li>領導力</li>
-                            <li>適應力</li>
-                        </ul>
-                    </div>
+                    <p class="text-gray-600 text-sm mt-4">「記錄溫仔底濕地公園的自然風光，感受生態的寧靜與活力。」</p>
                 </div>
-                <img src="https://placehold.co/400x250/cce5ff/0056b3?text=技能圖示或技能樹" alt="技能圖示或技能樹" class="slide-image mx-auto">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">我的興趣與嗜好</h2>
-                <div class="space-y-6 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-red-700 mb-2">興趣1：[例如：閱讀]</h3>
-                        <p class="text-lg md:text-xl">簡短描述為何喜歡，以及從中獲得了什麼。</p>
+                <div class="bg-white p-4 rounded-element shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">簡單禮拜四：生活隨筆</h3>
+                    <div class="video-container">
+                        <iframe width="1236" height="695" src="https://www.youtube.com/embed/oNMuq3rQ7uo" title="簡單禮拜四 3/27" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-yellow-700 mb-2">興趣2：[例如：攝影]</h3>
-                        <p class="text-lg md:text-xl">簡短描述為何喜歡，以及從中獲得了什麼。</p>
-                    </div>
-                    <p class="text-base md:text-lg italic mt-4">這些興趣如何豐富您的生活或幫助您發展特定技能。</p>
+                    <p class="text-gray-600 text-sm mt-4">「分享簡單生活中的小確幸，記錄平凡卻充滿意義的日常。」</p>
                 </div>
-                <img src="https://placehold.co/400x250/ffe0b2/e65100?text=展示您興趣的照片" alt="展示您興趣的照片" class="slide-image mx-auto">
             </div>
+            <a href="https://www.youtube.com/@NJ_m0ments" target="_blank" class="btn btn-primary mt-10 text-lg md:text-xl">
+                在YouTube觀看更多攝影影片 ➔
+            </a>
         </div>
+    </section>
 
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">我的熱情與價值觀</h2>
-                <div class="space-y-6 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-indigo-700 mb-2">我的熱情：</h3>
-                        <p class="text-lg md:text-xl">[例如：透過科技改善生活、推動永續發展]</p>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-teal-700 mb-2">核心價值觀：</h3>
-                        <ul class="list-disc list-inside ml-4 space-y-1 text-lg md:text-xl">
-                            <li>誠信</li>
-                            <li>創新</li>
-                            <li>責任</li>
-                            <li>同理心</li>
-                            <li>持續成長</li>
-                        </ul>
-                    </div>
-                    <p class="text-base md:text-lg italic mt-4">這些熱情和價值觀如何引導您的決策和行為。</p>
+    <section id="my-photos" class="bg-white shadow-lg rounded-element max-w-6xl mx-auto">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                我的圖片集：<span class="gradient-text">鏡頭下的精彩瞬間</span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                除了影片，我也喜歡用靜態照片捕捉生活中的美好。這裡是一些我近期喜歡的照片，希望能帶給你不同的視覺體驗。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-4 rounded-element shadow-md">
+                    <img src="https://i.meee.com.tw/rtNI5Ge.jpg" alt="黑白浣熊" class="feature-image mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">黑白浣熊：眼神中的故事</h3>
+                    <p class="text-gray-600 text-sm">「這張黑白照片捕捉了浣熊獨特的眼神，展現牠們在城市與自然間的靈動。」</p>
                 </div>
-                <img src="https://placehold.co/400x250/d0f0c0/007f00?text=表達熱情或價值觀的圖片" alt="表達熱情或價值觀的圖片" class="slide-image mx-auto">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">重要成就與專案</h2>
-                <div class="space-y-6 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-orange-700 mb-2">專案/成就1：[專案名稱/成就]</h3>
-                        <ul class="list-disc list-inside ml-4 space-y-1 text-base md:text-lg">
-                            <li><span class="font-medium">角色：</span>[您的角色]</li>
-                            <li><span class="font-medium">挑戰與解決方案：</span>[簡述遇到的挑戰及如何克服]</li>
-                            <li><span class="font-medium">成果：</span>[具體成果，使用量化數據]</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-orange-700 mb-2">專案/成就2：[專案名稱/成就]</h3>
-                        <ul class="list-disc list-inside ml-4 space-y-1 text-base md:text-lg">
-                            <li><span class="font-medium">角色：</span>[您的角色]</li>
-                            <li><span class="font-medium">挑戰與解決方案：</span>[簡述遇到的挑戰及如何克服]</li>
-                            <li><span class="font-medium">成果：</span>[具體成果，使用量化數據]</li>
-                        </ul>
-                    </div>
+                <div class="bg-gray-50 p-4 rounded-element shadow-md">
+                    <img src="https://i.meee.com.tw/u7xZXs1.jpg" alt="善導寺" class="feature-image mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">城市一隅：善導寺</h3>
+                    <p class="text-gray-600 text-sm">「在繁忙的都市中，古老的善導寺靜靜矗立，見證歲月流轉與城市變遷。」</p>
                 </div>
-                <img src="https://placehold.co/400x250/f0e68c/8b4513?text=專案成果截圖或圖片" alt="專案成果截圖或圖片" class="slide-image mx-auto">
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">未來目標與展望</h2>
-                <div class="space-y-6 text-left text-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-cyan-700 mb-2">短期目標：</h3>
-                        <p class="text-lg md:text-xl">[例如：學習新技能、完成某項認證]</p>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-semibold text-cyan-700 mb-2">長期目標：</h3>
-                        <p class="text-lg md:text-xl">[例如：成為領域專家、創業、在特定產業做出貢獻]</p>
-                    </div>
-                    <p class="text-base md:text-lg italic mt-4">您希望在未來如何成長和發展，以及對未來的期待和願景。</p>
+                <div class="bg-gray-50 p-4 rounded-element shadow-md">
+                    <img src="https://i.meee.com.tw/p2x9xJs.jpg" alt="近距離飛機照" class="feature-image mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">空中掠影：飛機的近距離特寫</h3>
+                    <p class="text-gray-600 text-sm">「捕捉飛機在空中掠過的一瞬，感受科技與天空的震撼交響。」</p>
                 </div>
-                <img src="https://placehold.co/400x250/b0e0e6/006064?text=代表未來或成長的圖片" alt="代表未來或成長的圖片" class="slide-image mx-auto">
             </div>
         </div>
+    </section>
 
-        <div class="slide bg-gradient-to-br from-green-500 to-blue-500 text-white">
-            <div class="slide-content">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">謝謝聆聽！</h1>
-                <p class="text-2xl md:text-3xl font-semibold mb-6">請問有任何問題嗎？</p>
-                <p class="text-xl md:text-2xl mb-2">再次聯絡方式：</p>
-                <p class="text-lg md:text-xl">[您的電子郵件]</p>
-                <p class="text-lg md:text-xl">[您的LinkedIn]</p>
-                <img src="https://placehold.co/300x300/a7f3d0/065f46?text=簡潔的感謝圖片" alt="簡潔的感謝圖片" class="slide-image mx-auto mt-8 w-48 h-48 rounded-full object-cover border-4 border-white">
+    <section id="learning" class="bg-white shadow-lg rounded-element max-w-6xl mx-auto">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                我的學習之旅：<span class="gradient-text">探索與成長的無限可能</span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+                我對世界充滿好奇，喜歡挑戰自己學習新技能。無論是新的軟體、語言、還是生活小技巧，我都樂於嘗試。每一次的學習都是一次成長，即使過程充滿挑戰，我也會努力克服。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="text-left">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">近期學習的項目</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
+                        <li><span class="font-medium text-blue-600">影片剪輯技巧：</span> 專注於利用手機剪輯應用程式（如 CapCut 等），學習快速高效的影片製作流程，讓我在移動中也能輕鬆創作Vlog和短片。</li>
+                        <li><span class="font-medium text-blue-600">基礎網頁開發：</span> 透過線上課程和實作，學習 HTML、CSS 和 JavaScript 的基礎知識（AI大神做的啦啦啦啦），並利用 Google AI 協助搭建簡單的個人網站，了解網頁運作的原理。</li>
+                        <li><span class="font-medium text-blue-600">外語學習：</span> 目前會中文、英文、廣東話，希望未來能透過語言與更多不同文化的人交流，拓展我的國際視野。</li>
+                        <li><span class="font-medium text-blue-600">攝影後期處理：</span> 學習 Lightroom 等進階修圖技巧，讓我的照片在色彩、光影和構圖上更加完美。</li>
+                        <li><span class="font-medium text-blue-600">...還有更多！</span> 我總是在尋找下一個可以投入的領域，保持對新知識的飢渴。</li>
+                    </ul>
+                </div>
+                <div class="text-left">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">我的學習理念</h3>
+                    <p class="text-lg text-gray-700 mb-4">
+                        我堅信努力會有成果。每一次的嘗試，無論成功或失敗，都是寶貴的經驗。我喜歡從實踐中學習，透過動手操作來加深理解。我也樂於分享我的學習過程和心得，希望能啟發更多人一同踏上探索知識的旅程。
+                    </p>
+                    <p class="text-lg text-gray-700">
+                        未來，我計劃探索更多關於人工智慧、數據分析等前沿科技，並思考如何將這些新知識與我的創作和生活結合，創造出更多有趣且有意義的內容。
+                    </p>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
+    <section id="connect" class="bg-gradient-to-br from-green-400 to-blue-400 text-white text-center py-20 md:py-32 rounded-element max-w-6xl mx-auto">
+        <div class="container">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                喜歡我的內容嗎？<span class="text-yellow-100">一起來探索更多！</span>
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                如果你也對攝影、學習或生活紀錄有興趣，歡迎訂閱我的YouTube頻道，並在其他平台找到我！
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://www.youtube.com/@NJ_m0ments" target="_blank" class="btn btn-primary text-lg md:text-xl">
+                    訂閱我的YouTube ▶
+                </a>
+                <a href="https://www.instagram.com/nj_m0ments/?igsh=MWE2cGU0NGYyNHB3Ng%3D%3D#" target="_blank" class="btn bg-white text-blue-600 hover:bg-gray-100 border border-blue-600 text-lg md:text-xl">
+                    追蹤我的Instagram ➤
+                </a>
+                </div>
+        </div>
+    </section>
 
-    <button class="nav-button left" onclick="prevSlide()">&#10094;</button>
-    <button class="nav-button right" onclick="nextSlide()">&#10095;</button>
+    <footer class="bg-gray-800 text-white py-8 text-center rounded-t-element max-w-6xl mx-auto">
+        <div class="container">
+            <p>© 2025 諾進時刻 NJ Moments. All rights reserved.</p>
+            <p class="text-sm mt-2">感謝您的到訪！</p>
+            <p class="text-sm mt-1">感謝 Google Gemini 協助我建構這個網站。</p>
+        </div>
+    </footer>
 
-    <script>
-        const slideContainer = document.getElementById('slideContainer');
-        const slides = document.querySelectorAll('.slide');
-        let currentSlideIndex = 0;
-
-        // Function to scroll to a specific slide
-        function scrollToSlide(index) {
-            if (index >= 0 && index < slides.length) {
-                slideContainer.scrollTo({
-                    left: slides[index].offsetLeft - slideContainer.offsetLeft,
-                    behavior: 'smooth'
-                });
-                currentSlideIndex = index;
-            }
-        }
-
-        // Next slide
-        function nextSlide() {
-            scrollToSlide(currentSlideIndex + 1);
-        }
-
-        // Previous slide
-        function prevSlide() {
-            scrollToSlide(currentSlideIndex - 1);
-        }
-
-        // Keyboard navigation (optional, for desktop experience)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
-        });
-
-        // Update current slide index on scroll (for touch/drag)
-        slideContainer.addEventListener('scroll', () => {
-            const scrollLeft = slideContainer.scrollLeft;
-            const slideWidth = slides[0].offsetWidth + (parseFloat(getComputedStyle(slides[0]).marginLeft) * 2); // Slide width + margins
-            currentSlideIndex = Math.round(scrollLeft / slideWidth);
-        });
-
-        // Ensure initial scroll position is correct on load
-        window.onload = () => {
-            scrollToSlide(0);
-        };
-
-        // Handle resize to adjust scroll position
-        window.addEventListener('resize', () => {
-            scrollToSlide(currentSlideIndex);
-        });
-    </script>
 </body>
 </html>
+
