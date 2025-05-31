@@ -5,7 +5,7 @@ A website about meeeeeee
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJ_Moments自我介紹</title>
+    <title>NJ_Moments介紹</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* 從 Google Fonts 導入 Inter 字體 */
@@ -277,4 +277,3 @@ A website about meeeeeee
 
 </body>
 </html>
-
